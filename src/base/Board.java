@@ -3,15 +3,28 @@ package base;
 import java.util.Arrays;
 
 public class Board {
-    static char[][] field = new char[20][20];
+    char[][] field;
+    int boardHeight;
+    int boardWidth;
 
-    public Board() {
+    public Board(int boardWidth, int boardHeight) {
+        this.boardWidth = boardWidth;
+        this.boardHeight = boardHeight;
+        this.field = new char[boardHeight][boardWidth];
         reset();
     }
 
-    static void reset() {
+    void reset() {
         for (char[] token : field) {
             Arrays.fill(token, ' ');
         }
+    }
+
+    public boolean isLegitMove(int x, int y) {
+        return (x >= 0 && y >= 0 && x < boardWidth && y < boardHeight);
+    }
+
+    public boolean isFreeSpot(int x, int y) {
+        return field[y][x] == ' ';
     }
 }
